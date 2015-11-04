@@ -40,7 +40,7 @@ def showPlayers(team_id):
     return render_template('players/players.html')
 
 
-# Show a team players
+# Show a player's details
 @app.route('/team/<int:team_id>/player/<int:player_id>/')
 @app.route('/team/<int:team_id>/player/<int:player_id>/details/')
 def showPlayerDetails(team_id, player_id):
