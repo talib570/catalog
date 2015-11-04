@@ -7,92 +7,92 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/home/')
 def showHome():
-    return "This will show the home page."
+    return render_template('index.html')
 
 
 # Lists all teams
 @app.route('/teams/')
 def showTeams():
-    return "This will list all teams"
+    return render_template('teams/teams.html')
 
 
 # Create a new team
 @app.route('/team/new/')
 def newTeam():
-    return "This will add new team"
+    return render_template('teams/newteam.html')
 
 # Edit a team
 @app.route('/team/<int:team_id>/edit/')
 def editTeam(team_id):
-    return "This will edit team"
+    return render_template('teams/editteam.html')
 
 
 # Delete a team
 @app.route('/team/<int:team_id>/delete/')
 def deleteTeam(team_id):
-    return "This will delete team"
+    return render_template('teams/deleteteam.html')
 
 
 # Show team players
 @app.route('/team/<int:team_id>/')
 @app.route('/team/<int:team_id>/players/')
 def showPlayers(team_id):
-    return "This will list all the players in a list"
+    return render_template('players/players.html')
 
 
 # Show a team players
 @app.route('/team/<int:team_id>/player/<int:player_id>/')
 @app.route('/team/<int:team_id>/player/<int:player_id>/details/')
 def showPlayerDetails(team_id, player_id):
-    return "This will show players details"
+    return render_template('players/playerdetails.html')
 
 
 # Create a new player
 @app.route('/team/<int:team_id>/player/new/')
 def newPlayer(team_id):
-    return "This will add new player"
+    return render_template('players/newplayer.html')
 
 
 # Edit player details
 @app.route('/team/<int:team_id>/player/<int:player_id>/edit')
 def editPlayer(team_id, player_id):
-    return "This will edit player details"
+    return render_template('players/editplayer.html')
 
 
 # Delete a player
 @app.route('/team/<int:team_id>/player/<int:player_id>/delete')
 def deletePlayer(team_id, player_id):
-    return "This will delete player from a team"
+    return render_template('players/deleteplayer.html')
 
 
 # Lists all events
 @app.route('/events/')
 def showEvents():
-    return "This will list all the upcoming events"
+    return render_template('events/events.html')
 
 
 # Lists event details
 @app.route('/event/<int:event_id>')
 def showEventDetails(event_id):
-    return "This will show event details"
+    return render_template('events/eventdetails.html')
 
 
 # Create new event
 @app.route('/event/new/')
 def newEvent():
-    return "This will create new event"
+    return render_template('events/newevent.html')
 
 
 # Edit an event
 @app.route('/event/<int:event_id>/edit/')
 def editEvent(event_id):
-    return "This will edit an event"
+    return render_template('events/editevent.html')
 
 
-# Delete a player
+# Delete a event
 @app.route('/event/<int:event_id>/delete/')
 def deleteEvent(event_id):
-    return "This will delete upcoming event"
+    return render_template('events/deleteevent.html')
 
 
 
