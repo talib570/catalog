@@ -1,1 +1,34 @@
-teams
+{% extends "main.html" %}
+{% include "header.html" %}
+{% block content %}
+<h1>Teams</h1>
+<div class="actions">
+    <a href="{{url_for('newTeam')}}">Add Team</a>
+</div>
+<div class = 'flash'>
+              {% with messages = get_flashed_messages() %}
+      {% if messages %}
+
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+{% for team in teams %}
+    <div class="team">
+        <img src="/static/images/userimages/{{team.logo}}" alt="">
+        <div class="info">
+            <h2><a href="{{url_for('showPlayers', team_id=team.id)}}">{{team.name}}</a></h2>
+            <p>{{team.game.name}}</p>
+        </div>
+        <div class="actions">
+            <br>
+            <a class='right-buttons' href="{{url_for('editTeam', team_id=team.id)}}">Edit</a>
+            <a class='right-buttons' href="{{url_for('deleteTeam', team_id=team.id)}}">Delete</a>
+        </div>
+    </div>
+{% endfor %}
+{% endblock content %}

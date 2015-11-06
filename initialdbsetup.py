@@ -1,9 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from database_setup import Player, Game, Base
+from database_setup import User, Game, Base
 
-engine = create_engine('sqlite:///gamingevents.db')
+engine = create_engine('sqlite:///teamcatalog.db')
 # Bind the engine to the metadata of the Base class so that the
 # declaratives can be accessed through a DBSession instance
 Base.metadata.bind = engine
@@ -18,18 +18,18 @@ DBSession = sessionmaker(bind=engine)
 # session.rollback()
 session = DBSession()
 
-# adds new player
-player = Player(name="Talib Allauddin", username="talib_570", password='78def760e9ed7c5adabf491ad99ff590', picture='static/images/talib.jpg', skill_level='Entry Level', summary='N/A', age=25, is_active='1', is_delete='0', phone='+923430505458', email='talib_570@live.com', share_contact='1')
-session.add(player)
+# adds new user
+user = User(name="Talib Allauddin", email="talib_570@live.com", picture="no_picture.jpg")
+session.add(user)
 session.commit()
 
 
 # adds game 1
-game1 = Game(name='Need For Speed Most Wanted', category='Racing', created_by=1, is_active='1', is_delete='0')
+game1 = Game(name='Need For Speed Most Wanted', category='Racing', is_active='1', is_delete='0')
 session.add(game1)
 session.commit()
 
 # adds game 2
-game2 = Game(name='Couter Strike', category='Shooting', created_by=1, is_active='1', is_delete='0')
+game2 = Game(name='Couter Strike', category='Shooting', is_active='1', is_delete='0')
 session.add(game2)
 session.commit()

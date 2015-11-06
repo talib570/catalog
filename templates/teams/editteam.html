@@ -1,1 +1,66 @@
-edit team
+{% extends "main.html" %}
+{% block content %}
+<form class='team' action="#" enctype="multipart/form-data" method="POST">
+    <input type="text" name="name" value="{{team.name}}">
+    <label for="name">Team name</label>
+    <br>
+
+    <input type="text" name="locallity" value="{{team.locallity}}">
+    <label for="locallity">Locallity</label>
+    <br>
+
+    <input type="text" name="start_year" class="datepicker" value="{{team.start_year}}">
+    <label for="start_year">Team since</label>
+    <br>
+
+    <select name="game_id" >
+        {% for game in games %}
+            <option value="{{game.id}}" {% if game.name==team.game.name %} selected="selected"{% endif %}>{{game.name}}</option>
+        {% endfor %}
+    </select>
+    <label for="game_id">Game</label>
+    <br>
+
+    <select name="status" >
+        <option value="Active" {% if team.is_active=='1' %} selected="selected"{% endif %}>Active</option>
+        <option value="Inactive" {% if team.is_active=='0' %} selected="selected"{% endif %}>Inactive</option>
+    </select>
+    <label for="status">Status</label>
+    <br>
+
+
+    <label for="logo">Team logo</label>
+    {% if team.logo != '' %}
+        <img src="/static/images/userimages/{{team.logo}}" alt="">
+    {% endif %}
+    <input type="file" name="logo">
+    <a href="javascript:;" id="removeLogo">Remove</a>
+    <br>
+
+    <input type="submit" value="Submit">
+    <a href="{{url_for('showTeams')}}">Cancel</a>
+</form>
+<style>
+    select,input{margin:10px !important;}
+    .datepicker{border-radius: 0px;}
+    label{float:left !important;width:140px !important;margin:10px !important;line-height: 1;}
+    .team img{width: 60px;height: 60px;float: left;margin-right: 5px;}
+</style>
+<script>
+    $('.datepicker').datepicker({
+        format: 'mm/yyyy',
+        startDate: '-32y',
+        startView: 2,
+        minViewMode: 1
+    });
+    $("#removeLogo").unbind('click').on('click', function(){
+        $("#removeLogo").text('Wait...');
+        $.post("{{url_for('removeTeamLogo', team_id=team.id)}}", function(data) {
+            $("#removeLogo").text('Remove');
+            if (data.status == true) {
+                $(".team img").attr('src', '/static/images/userimages/no_logo.jpg');
+            };
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,18 @@
+body{font-family: arial;}
+a{text-decoration: none;color: tomato;}
+a:hover{text-decoration: none;}
+.content{width:950px;margin:0 auto;}
+.team{padding:5px;width:280px;height:220px;background-color: #eee; margin:5px;float:left;}
+.team h2{line-height: 0;}
+.team img{width: 270px;height: 150px;}
+.player{float:left;margin-right: 15px;}
+.player img{width: 60px;height: 60px;float: left;margin-right: 5px;}
+.actions{}
+.info{float: left;}
+.right-buttons{float:right;}
+.actions a{padding:6px;border:2px solid #20CA61;border-radius: 4px;margin-right:5px;}
+.actions a:hover{background-color: #20CA61;}
+.user-status{float:right;}
+select,input{margin:10px !important;}
+.datepicker{border-radius: 0px;}
+label{float:left !important;width:140px !important;margin:10px !important;line-height: 1;}

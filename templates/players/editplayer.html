@@ -1,1 +1,69 @@
-edit player
+{% extends "main.html" %}
+{% block content %}
+<form class="player" action="#" enctype="multipart/form-data" method="POST">
+    <input type="text" name="name" value="{{player.name}}">
+    <label for="name">Player name</label>
+    <br>
+
+    <input type="text" name="email" value="{{player.email}}">
+    <label for="email">Email</label>
+    <br>
+
+    <input type="text" name="phone" value="{{player.phone}}">
+    <label for="phone">Phone</label>
+    <br>
+
+    <select name="skill_level" >
+        {% for skill in skill_levels %}
+            <option value="{{skill}}" {% if skill == player.skill_level %} selected="selected" {% endif %}>{{skill}}</option>
+        {% endfor %}
+    </select>
+    <label for="skill_level">Skill Level</label>
+    <br>
+
+    <select name="status" >
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+    </select>
+    <label for="status">Status</label>
+    <br>
+
+    <textarea name="summary" cols="30" rows="6">{{player.summary}}</textarea>
+    <label for="summary">Summary</label>
+    <br>
+
+    <label for="picture">Picture</label>
+    {% if player.picture != '' %}
+        <img src="/static/images/userimages/{{player.picture}}" alt="">
+    {% endif %}
+    <input type="file" name="picture">
+    <a href="javascript:;" id="removePicture">Remove</a>
+    <br>
+
+    <select name="share_contact" >
+        <option value="1" {% if player.share_contact == '0' %} selected="selected" {% endif %}>Yes</option>
+        <option value="0" {% if player.share_contact == '0' %} selected="selected" {% endif %}>No</option>
+    </select>
+    <label for="share_contact">Share contact info.</label>
+    <br>
+
+    <input type="submit" value="Submit">
+</form>
+<style>
+    select,input{margin:10px !important;}
+    .datepicker{border-radius: 0px;}
+    label{float:left !important;width:140px !important;margin:10px !important;line-height: 1;}
+    .player img{width: 60px;height: 60px;float: left;margin-right: 5px;}
+</style>
+<script>
+    $("#removePicture").unbind('click').on('click', function(){
+        $("#removePicture").text('Wait...');
+        $.post("{{url_for('removePlayerPicture', player_id=player.id)}}", function(data) {
+            $("#removePicture").text('Remove');
+            if (data.status == true) {
+                $(".player img").attr('src', '/static/images/userimages/no_logo.jpg');
+            };
+        });
+    });
+</script>
+{% endblock %}

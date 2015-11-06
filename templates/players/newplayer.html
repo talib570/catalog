@@ -1,1 +1,48 @@
-new player
+{% extends "main.html" %}
+{% block content %}
+<form action="#" enctype="multipart/form-data" method="POST">
+    <input type="text" name="name">
+    <label for="name">Player name</label>
+    <br>
+
+    <input type="text" name="email">
+    <label for="email">Email</label>
+    <br>
+
+    <input type="text" name="phone">
+    <label for="phone">Phone</label>
+    <br>
+
+    <select name="skill_level" >
+        {% for skill in skill_levels %}
+            <option value="{{skill}}">{{skill}}</option>
+        {% endfor %}
+    </select>
+    <label for="skill_level">Skill Level</label>
+    <br>
+
+    <select name="status" >
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+    </select>
+    <label for="status">Status</label>
+    <br>
+
+    <textarea name="summary" cols="30" rows="6"></textarea>
+    <label for="summary">Summary</label>
+    <br>
+
+    <label for="logo">Picture</label>
+    <input type="file" name="picture">
+    <br>
+
+    <select name="share_contact" >
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+    </select>
+    <label for="share_contact">Share contact info.</label>
+    <br>
+
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

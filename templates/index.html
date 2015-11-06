@@ -1,1 +1,23 @@
-index
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Games</title>
+</head>
+<body>
+    <h1>Teams</h1>
+    <a href="{{url_for('newTeam')}}">Add Team</a>
+    {% for team in teams %}
+        <div class="team">
+            <img src="/static/images/userimages/{{team.logo}}" alt="">
+            <h2>{{team.name}}</h2>
+            <p>{{team.game.name}}</p>
+        </div>
+    {% endfor %}
+</body>
+<style>
+    .team{padding:5px;}
+    .team h2{line-height: 0;}
+    .team img{width: 60px;height: 60px;float: left;margin-right: 5px;}
+</style>
+</html>
