@@ -2,9 +2,9 @@ body{font-family: arial;}
 a{text-decoration: none;color: tomato;}
 a:hover{text-decoration: none;}
 .content{width:950px;margin:0 auto;}
-.team{padding:5px;width:280px;height:220px;background-color: #eee; margin:5px;float:left;}
+.team{padding:5px;width:280px;height:280px;background-color: #eee; margin:5px;float:left;}
 .team h2{line-height: 0;}
-.team img{width: 270px;height: 150px;}
+.team img{width: 270px;height: 210px;}
 .player{float:left;margin-right: 15px;}
 .player img{width: 60px;height: 60px;float: left;margin-right: 5px;}
 .actions{}
